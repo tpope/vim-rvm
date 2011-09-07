@@ -110,10 +110,18 @@ function! s:Rvm(bang,...) abort
 endfunction
 
 function! s:Complete(A,L,P)
-  let all = split(glob($rvm_path.'/rubies/*'),"\n")
-  call map(all,"v:val[strlen($rvm_path)+8:-1]")
-  if a:A !~# '^r'
-    call map(all,'substitute(v:val,"^ruby-\\ze\\d","","")')
+  if a:A =~# '@'
+    let requested = matchstr(a:A,'^[^@]*')
+    let desired = system('rvm tools strings '.s:shellesc(requested))[0:-2]
+    let all = split(glob($rvm_path.'/gems/'.desired.'@*'),"\n")
+    call map(all,"v:val[strlen($rvm_path)+6:-1]")
+    call map(all,'substitute(v:val,"^[^@]*",requested,"")')
+  else
+    let all = split(glob($rvm_path.'/rubies/*'),"\n")
+    call map(all,"v:val[strlen($rvm_path)+8:-1]")
+    if a:A !~# '^r'
+      call map(all,'substitute(v:val,"^ruby-\\ze\\d","","")')
+    endif
   endif
   return join(all,"\n")
 endfunction
