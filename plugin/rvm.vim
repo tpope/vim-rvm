@@ -53,7 +53,7 @@ function! s:Rvm(bang,...) abort
     let args = copy(a:000)
   endif
 
-  if len(args) > 1 || (len(args) == 1 && args[0] !~ '^\%(\d\|default\|j\=ruby\|goruby\|rbx\|ree\|kiji\|maglev\|ironruby\|system\)' && !use)
+  if len(args) > 1 || (len(args) == 1 && args[0] !~ '^\%(@\|\d\|default\|j\=ruby\|goruby\|rbx\|ree\|kiji\|maglev\|ironruby\|system\)' && !use)
     return '!rvm '.join(map(copy(a:000), 's:shellesc(v:val)'), ' ')
   elseif !empty(args) && args[-1] ==# 'system'
     let $RUBY_VERSION = ''
@@ -68,7 +68,7 @@ function! s:Rvm(bang,...) abort
       return ''
     endif
   elseif !empty(args)
-    let desired = system('rvm tools strings '.s:shellesc(a:1))[0:-2]
+    let desired = system('rvm tools strings '.s:shellesc(args[0]))[0:-2]
   elseif use || !exists('b:rvm_string')
     let desired = rvm#buffer_path_identifier()
   else
