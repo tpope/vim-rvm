@@ -56,6 +56,16 @@ function! s:Rvm(bang,...) abort
   if len(args) > 1 || (len(args) == 1 && args[0] !~ '^\%(@\|\d\|default\|j\=ruby\|goruby\|rbx\|ree\|kiji\|maglev\|ironruby\|system\)' && !use)
     return '!rvm '.join(map(copy(a:000), 's:shellesc(v:val)'), ' ')
   elseif !empty(args) && args[-1] ==# 'system'
+    let desired = 'system'
+  elseif !empty(args)
+    let desired = system('rvm tools strings '.s:shellesc(args[0]))[0:-2]
+  elseif use || !exists('b:rvm_string')
+    let desired = rvm#buffer_path_identifier()
+  else
+    let desired = b:rvm_string
+  endif
+
+  if desired ==# 'system'
     let $RUBY_VERSION = ''
     let $MY_RUBY_HOME = ''
     let $IRBRC = expand('~/.irbrc')
@@ -67,12 +77,6 @@ function! s:Rvm(bang,...) abort
     else
       return ''
     endif
-  elseif !empty(args)
-    let desired = system('rvm tools strings '.s:shellesc(args[0]))[0:-2]
-  elseif use || !exists('b:rvm_string')
-    let desired = rvm#buffer_path_identifier()
-  else
-    let desired = b:rvm_string
   endif
 
   let ver = matchstr(desired,'[^@]*')
