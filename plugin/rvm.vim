@@ -1,5 +1,6 @@
 " rvm.vim - Switch Ruby versions from inside Vim
 " Maintainer:   Tim Pope <http://tpo.pe/>
+" Version:      1.0
 
 if exists('g:loaded_rvm') || v:version < 700 || &cp
   finish
