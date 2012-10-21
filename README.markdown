@@ -64,7 +64,8 @@ Self-Promotion
 Like rvm.vim? Follow the repository on
 [GitHub](https://github.com/tpope/vim-rvm) and vote for it on
 [vim.org](http://www.vim.org/scripts/script.php?script_id=4269).  And if
-you're feeling especially charitable, follow [tpope](http://tpo.pe/) on [Twitter](http://twitter.com/tpope) and
+you're feeling especially charitable, follow [tpope](http://tpo.pe/) on
+[Twitter](http://twitter.com/tpope) and
 [GitHub](https://github.com/tpope).
 
 License
