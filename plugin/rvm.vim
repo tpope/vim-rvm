@@ -39,7 +39,9 @@ function! rvm#buffer_path_identifier(...)
   else
     let path = fnamemodify(name, ':h')
   endif
-  return system('rvm tools path-identifier '.s:shellesc(path))
+
+  let path_identifier = system('rvm tools path-identifier '.s:shellesc(path))
+  return split(path_identifier)[-1]
 endfunction
 
 function! s:Rvm(bang,...) abort
