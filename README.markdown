@@ -49,11 +49,6 @@ Once help tags have been generated, you can view the manual with
 You're using zsh on OS X, aren't you?  Move that stupid `/etc/zshenv`
 to `/etc/zshrc`.
 
-## Contributing
-
-See the contribution guidelines for
-[rails.vim](https://github.com/tpope/vim-rails#readme).
-
 ## Self-Promotion
 
 Like rvm.vim? Follow the repository on
