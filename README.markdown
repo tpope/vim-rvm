@@ -1,5 +1,4 @@
-rvm.vim
-=======
+# rvm.vim
 
 Want to use [RVM](http://rvm.beginrescueend.com) with Vim?  You don't
 need a plugin to do that:  Just start Vim from your RVM enabled shell
@@ -31,8 +30,7 @@ You can also invoke any old `rvm` command.
 Add `%{rvm#statusline()}` to `'statusline'` (or `'titlestring'`) to see
 the current Ruby version at all times.
 
-Installation
-------------
+## Installation
 
 If you don't have a preferred installation method, I recommend
 installing [pathogen.vim](https://github.com/tpope/vim-pathogen), and
@@ -44,22 +42,19 @@ then simply copy and paste:
 Once help tags have been generated, you can view the manual with
 `:help rvm`.
 
-FAQ
----
+## FAQ
 
 > RVM doesn't work in my Vim.
 
 You're using zsh on OS X, aren't you?  Move that stupid `/etc/zshenv`
 to `/etc/zshrc`.
 
-Contributing
-------------
+## Contributing
 
 See the contribution guidelines for
 [rails.vim](https://github.com/tpope/vim-rails#readme).
 
-Self-Promotion
---------------
+## Self-Promotion
 
 Like rvm.vim? Follow the repository on
 [GitHub](https://github.com/tpope/vim-rvm) and vote for it on
@@ -68,8 +63,7 @@ you're feeling especially charitable, follow [tpope](http://tpo.pe/) on
 [Twitter](http://twitter.com/tpope) and
 [GitHub](https://github.com/tpope).
 
-License
--------
+## License
 
 Copyright (c) Tim Pope.  Distributed under the same terms as Vim itself.
 See `:help license`.
