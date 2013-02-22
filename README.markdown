@@ -30,6 +30,12 @@ You can also invoke any old `rvm` command.
 Add `%{rvm#statusline()}` to `'statusline'` (or `'titlestring'`) to see
 the current Ruby version at all times.
 
+Last but not least, rvm.vim tells recent versions of [vim-ruby][] where your
+Ruby installs are located, so that it can set `'path'` in your Ruby buffers to
+reflect the nearest `.ruby-version` file.
+
+[vim-ruby]: https://github.com/vim-ruby/vim-ruby
+
 ## Installation
 
 If you don't have a preferred installation method, I recommend

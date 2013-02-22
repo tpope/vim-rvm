@@ -155,5 +155,40 @@ function! rvm#statusline_ft_ruby()
 endfunction
 
 " }}}1
+" Load path {{{1
+
+function! rvm#ruby_version_paths() abort
+  let dict = {}
+  for entry in split(glob("$rvm_path/rubies/ruby-*"))
+    let ver = matchstr(entry, '/rubies/ruby-\zs.*')
+    let paths = ver =~# '^1.[0-8]' ? ['.'] : []
+    let paths += split($RUBYLIB, ':')
+    let site_ruby_arch = glob(entry . '/lib/ruby/site_ruby/*.*/*-*')
+    if empty(site_ruby_arch) || site_ruby_arch =~# "\n"
+      continue
+    endif
+    let arch = fnamemodify(site_ruby_arch, ':t')
+    let minor = fnamemodify(site_ruby_arch, ':h:t')
+    let paths += [
+          \ entry . '/lib/ruby/site_ruby/' . minor,
+          \ entry . '/lib/ruby/site_ruby/' . minor . '/' . arch,
+          \ entry . '/lib/ruby/site_ruby',
+          \ entry . '/lib/ruby/vendor_ruby/' . minor,
+          \ entry . '/lib/ruby/vendor_ruby/' . minor . '/' . arch,
+          \ entry . '/lib/ruby/vendor_ruby',
+          \ entry . '/lib/ruby/' . minor,
+          \ entry . '/lib/ruby/' . minor . '/' . arch]
+    let dict[ver] = paths
+  endfor
+  return dict
+endfunction
+
+if !exists('g:ruby_version_paths')
+  let g:ruby_version_paths = {}
+endif
+
+call extend(g:ruby_version_paths, rvm#ruby_version_paths(), 'keep')
+
+" }}}1
 
 " vim:set sw=2 sts=2:
