@@ -36,6 +36,8 @@ function! rvm#buffer_path_identifier(...)
     let path = '.'
   elseif isdirectory(name)
     let path = name
+  elseif !isdirectory(resolve(fnamemodify(name, ":p:h")))
+    let path = '.'
   else
     let path = fnamemodify(name, ':h')
   endif
