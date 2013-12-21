@@ -1,6 +1,6 @@
 # rvm.vim
 
-Want to use [RVM](http://rvm.beginrescueend.com) with Vim?  You don't
+Want to use [RVM](http://rvm.io) with Vim?  You don't
 need a plugin to do that:  Just start Vim from your RVM enabled shell
 and it will work.  But say you started MacVim from Launchpad, or you
 started Vim with one version of Ruby and now you want another.  That's
