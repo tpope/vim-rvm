@@ -8,7 +8,7 @@ endif
 
 if !exists('$rvm_path') && isdirectory(expand('~/.rvm'))
   let $rvm_path = expand('~/.rvm')
-  let $PATH .= ':' . $rvm_path . '/bin'
+  let $PATH = $rvm_path . '/bin' . ':' . $PATH
 endif
 
 if !exists('$rvm_path')
@@ -74,7 +74,7 @@ function! s:Rvm(bang,...) abort
     let $RUBY_VERSION = ''
     let $MY_RUBY_HOME = ''
     let $IRBRC = expand('~/.irbrc')
-    let $PATH = join(path + [$rvm_path.'/bin'],':')
+    let $PATH = join([$rvm_path.'/bin'] + path,':')
     let $GEM_HOME = system('env -i PATH="'.$PATH.'" ruby -rubygems -e "print Gem.dir"')
     let $GEM_PATH = system('env -i PATH="'.$PATH.'" ruby -rubygems -e "print Gem.path.join(%{:})"')
     if use
@@ -107,8 +107,8 @@ function! s:Rvm(bang,...) abort
 
   let $GEM_PATH = join(gemsets, ':')
   let $PATH = join(
-        \ [$MY_RUBY_HOME.'/bin'] +
         \ map(gemsets,'v:val."/bin"') +
+        \ [$MY_RUBY_HOME.'/bin'] +
         \ [$rvm_path.'/bin'] +
         \ path, ':')
   if use
