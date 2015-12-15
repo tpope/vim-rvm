@@ -52,8 +52,9 @@ Once help tags have been generated, you can view the manual with
 
 > RVM doesn't work in my Vim.
 
-You're using zsh on OS X, aren't you?  Move that stupid `/etc/zshenv`
-to `/etc/zshrc`.
+You're using zsh on OS X Yosemite or earlier, aren't you?  Move that stupid
+`/etc/zshenv` to `/etc/zprofile`, which is where it correctly lives on El
+Capitan.
 
 ## Self-Promotion
 
