@@ -75,8 +75,8 @@ function! s:Rvm(bang,...) abort
     let $MY_RUBY_HOME = ''
     let $IRBRC = expand('~/.irbrc')
     let $PATH = join([$rvm_path.'/bin'] + path,':')
-    let $GEM_HOME = system('env -i PATH="'.$PATH.'" ruby -rubygems -e "print Gem.dir"')
-    let $GEM_PATH = system('env -i PATH="'.$PATH.'" ruby -rubygems -e "print Gem.path.join(%{:})"')
+    let $GEM_HOME = system('env -i PATH="'.$PATH.'" ruby -rrubygems -e "print Gem.dir"')
+    let $GEM_PATH = system('env -i PATH="'.$PATH.'" ruby -rrubygems -e "print Gem.path.join(%{:})"')
     if use
       return 'echomsg "Using system ruby"'
     else
